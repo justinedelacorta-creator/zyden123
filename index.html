@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Invitation!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- AUTOPLAY AUDIO TAG -->
+    <audio id="bgMusic" autoplay loop muted preload="auto">
+        <source src="audio/birtday.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="card">
+        <span class="badge">You're Invited! 👑</span>
+        <h1>Prince's 1st Birthday</h1>
+        
+        <p class="subtitle">Come join us as we celebrate our baby boy's birthday! 🎈</p>
+
+        <!-- PICTURE SA GITNA -->
+        <div class="profile-image-container">
+            <img src="image/denden.jpg" alt="Baby's Picture">
+        </div>
+
+        <div class="details-container">
+            <div class="detail-item">
+                📅 <span>Date:</span> September 22, 2026
+            </div>
+            <div class="detail-item">
+                ⏰ <span>Time:</span> 3:00 PM Onwards
+            </div>
+            <div class="detail-item">
+                📍 <span>Venue:</span> Grand Celebration Hall, Manila
+            </div>
+        </div>
+
+        <!-- Countdown Timer Section -->
+        <div class="countdown">
+            <div class="time-box">
+                <span id="days">00</span>
+                <label>Days</label>
+            </div>
+            <div class="time-box">
+                <span id="hours">00</span>
+                <label>Hours</label>
+            </div>
+            <div class="time-box">
+                <span id="minutes">00</span>
+                <label>Mins</label>
+            </div>
+            <div class="time-box">
+                <span id="seconds">00</span>
+                <label>Secs</label>
+            </div>
+        </div>
+
+        <!-- GUMAGALAW NA GOOGLE MAPS BUTTON -->
+        <button class="btn-location" id="locationBtn">📍 View Location on Google Maps</button>
+    </div>
+
+    <!-- Canvas Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
