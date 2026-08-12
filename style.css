@@ -14,9 +14,83 @@ body {
     align-items: center;
     padding: 20px;
     color: #333;
+    position: relative;
+    overflow-x: hidden;
 }
 
-/* Card Container */
+/* OVERLAY SCREEN STYLE */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(102, 166, 255, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+    padding: 20px;
+}
+
+.overlay-card {
+    background: white;
+    padding: 30px 20px;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.overlay-card h2 {
+    color: #1e3c72;
+    margin-bottom: 10px;
+}
+
+.overlay-card p {
+    color: #5a738e;
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+}
+
+.profile-image-container-small {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid #d0e7ff;
+    margin: 0 auto 20px auto;
+}
+
+.profile-image-container-small img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.btn-open {
+    background: linear-gradient(to right, #00b4db, #0083b0);
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 14px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 180, 219, 0.4);
+    animation: pulseBtn 1.5s infinite;
+}
+
+@keyframes pulseBtn {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* MAIN CARD CONTAINER */
 .card {
     background: rgba(255, 255, 255, 0.95);
     width: 100%;
@@ -26,12 +100,6 @@ body {
     box-shadow: 0 15px 35px rgba(0, 110, 255, 0.2);
     text-align: center;
     backdrop-filter: blur(10px);
-    animation: fadeIn 1s ease-in-out;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
 }
 
 /* Typography */
@@ -60,14 +128,18 @@ h1 {
     margin-bottom: 15px;
 }
 
-/* Profile Image */
+/* Profile Image Section */
+.profile-section {
+    margin-bottom: 25px;
+}
+
 .profile-image-container {
-    width: 150px;
-    height: 150px;
+    width: 140px;
+    height: 140px;
     border-radius: 50%;
     overflow: hidden;
-    border: 6px solid #d0e7ff;
-    margin: 0 auto 25px auto;
+    border: 5px solid #d0e7ff;
+    margin: 0 auto 10px auto;
     box-shadow: 0 5px 15px rgba(0, 180, 219, 0.2);
 }
 
@@ -75,6 +147,77 @@ h1 {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+/* MALIIT NA GUMAGALAW NA VIDEO BUTTON */
+.btn-video-small {
+    background: #ff4757; /* Attractive Red Accent */
+    color: white;
+    border: none;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(255, 71, 87, 0.4);
+    transition: all 0.2s ease;
+    display: inline-block;
+    
+    /* Gagalaw din tulad ng location button */
+    animation: gigglePulse 1.2s infinite 2s;
+}
+
+.btn-video-small:hover {
+    background: #ff6b81;
+    transform: scale(1.08);
+}
+
+/* VIDEO MODAL POPUP */
+.video-modal {
+    display: none; /* Tago muna */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+
+.video-modal-content {
+    background: #1e272e;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 500px;
+    padding: 15px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.close-video {
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.video-wrapper {
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.video-wrapper video {
+    width: 100%;
+    max-height: 70vh;
+    display: block;
 }
 
 /* Details Box */
@@ -127,53 +270,45 @@ h1 {
     text-transform: uppercase;
 }
 
-/* GUMAGALAW NA LOCATION BUTTON (Na-update) */
+/* GUMAGALAW NA LOCATION BUTTON */
 .btn-location {
     background: linear-gradient(to right, #00b4db, #0083b0);
     color: white;
     border: none;
     width: 100%;
-    padding: 16px; /* Nilakihan ng konti */
+    padding: 16px;
     border-radius: 10px;
-    font-size: 1.1rem; /* Mas malaki ang font */
+    font-size: 1.1rem;
     font-weight: bold;
     cursor: pointer;
     box-shadow: 0 5px 15px rgba(0, 180, 219, 0.3);
-    
-    /* Transition para sa swabe na hover effect */
     transition: all 0.3s ease;
-    
-    /*--- ITONG LINE ANG NAGPAPAGALAW ---*/
-    /* Pangalan ng animation (tingnan sa baba), tagal (1s), paulit-ulit (infinite), may delay (3s bago umulit) */
     animation: gigglePulse 1s infinite 3s; 
 }
 
-/* Hover effect (kapag itinapat ang mouse) at Tap effect (sa cellphone) */
 .btn-location:hover, .btn-location:active {
-    transform: translateY(-3px) scale(1.05); /* Tataas at lalakí ng konti */
-    box-shadow: 0 8px 20px rgba(0, 180, 219, 0.5); /* Mas matingkad na shadow */
-    background: linear-gradient(to right, #00c6ff, #00b4db); /* Mas maliwanag na kulay */
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 180, 219, 0.5);
+    background: linear-gradient(to right, #00c6ff, #00b4db);
 }
 
-/*--- ANG CODE PARA SA GALAW (Giggle at Pulse) ---*/
 @keyframes gigglePulse {
     0% { transform: scale(1); }
-    10% { transform: scale(1.03) rotate(-2deg); } /* Lalakí at liliko sa kaliwa */
-    20% { transform: scale(1.03) rotate(2deg); }  /* Liliko sa kanan */
+    10% { transform: scale(1.03) rotate(-2deg); }
+    20% { transform: scale(1.03) rotate(2deg); }
     30% { transform: scale(1.03) rotate(-1deg); }
     40% { transform: scale(1.03) rotate(1deg); }
-    50% { transform: scale(1.01) rotate(0deg); }  /* Babalik sa gitna */
-    100% { transform: scale(1); } /* Papahinga */
+    50% { transform: scale(1.01) rotate(0deg); }
+    100% { transform: scale(1); }
 }
 
-/* Responsive adjustments */
 @media (max-width: 360px) {
     .card {
         padding: 20px 15px;
     }
     .profile-image-container {
-        width: 120px;
-        height: 120px;
+        width: 110px;
+        height: 110px;
     }
     .countdown {
         gap: 5px;

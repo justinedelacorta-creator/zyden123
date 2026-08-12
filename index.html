@@ -8,20 +8,54 @@
 </head>
 <body>
 
-    <!-- AUTOPLAY AUDIO TAG -->
-    <audio id="bgMusic" autoplay loop muted preload="auto">
+    <!-- WELCOME POP-UP OVERLAY -->
+    <div class="overlay" id="welcomeOverlay">
+        <div class="overlay-card">
+            <h2>You're Invited! 👑</h2>
+            <p>You have received an invitation for Zyden's Birthday!</p>
+
+            <div class="profile-image-container-small">
+                <img src="image/denden.jpg" alt="Baby's Picture">
+            </div>
+
+            <button class="btn-open" id="openBtn">✉️ Open Invitation</button>
+        </div>
+    </div>
+
+    <!-- VIDEO POP-UP MODAL -->
+    <div class="video-modal" id="videoModal">
+        <div class="video-modal-content">
+            <span class="close-video" id="closeVideoBtn">&times;</span>
+            <div class="video-wrapper">
+                <!-- PALITAN ang src sa ibaba ng MP4 file name mo o YouTube embed link -->
+                <video id="birthdayVideo" controls>
+                    <source src="video/zyden.mp4" type="video/mp4">
+                    Your browser does not support video.
+                </video>
+            </div>
+        </div>
+    </div>
+
+    <!-- BACKGROUND MUSIC AUDIO -->
+    <audio id="bgMusic" loop preload="auto">
         <source src="audio/birtday.mp3" type="audio/mpeg">
     </audio>
 
+    <!-- MAIN INVITATION CARD -->
     <div class="card">
         <span class="badge">You're Invited! 👑</span>
-        <h1>Zyden's 2st Birthday</h1>
+        <h1>Zyden's 2nd Birthday</h1>
         
         <p class="subtitle">Come join us as we celebrate our baby boy's birthday! 🎈</p>
 
         <!-- PICTURE SA GITNA -->
-        <div class="profile-image-container">
-            <img src="image/denden.jpg" alt="Baby's Picture">
+        <div class="profile-section">
+            <div class="profile-image-container">
+                <img src="image/denden.jpg" alt="Baby's Picture">
+            </div>
+            
+            <!-- MALIIT AT GUMAGALAW NA VIDEO BUTTON -->
+            <button class="btn-video-small" id="watchVideoBtn">▶ Watch Video</button>
         </div>
 
         <div class="details-container">

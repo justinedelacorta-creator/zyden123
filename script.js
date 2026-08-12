@@ -27,20 +27,20 @@ updateCountdown();
 // --- 2. CONFETTI EFFECT ---
 function launchConfetti() {
     confetti({
-        particleCount: 100,
-        spread: 70,
+        particleCount: 120,
+        spread: 80,
         origin: { y: 0.6 }
     });
 
     setTimeout(() => {
         confetti({
-            particleCount: 50,
+            particleCount: 60,
             angle: 60,
             spread: 55,
             origin: { x: 0 }
         });
         confetti({
-            particleCount: 50,
+            particleCount: 60,
             angle: 120,
             spread: 55,
             origin: { x: 1 }
@@ -48,34 +48,51 @@ function launchConfetti() {
     }, 400);
 }
 
-window.addEventListener('load', launchConfetti);
-
-// --- 3. FORCE AUTOPLAY & UNMUTE ON TOUCH ---
+// --- 3. OPEN INVITATION & PLAY MUSIC ---
 const music = document.getElementById('bgMusic');
+const openBtn = document.getElementById('openBtn');
+const overlay = document.getElementById('welcomeOverlay');
 
-function enableAudio() {
-    music.muted = false; // Tanggalin ang mute
-    music.play().then(() => {
-        // Kapag tumutugtog na nang may tunog, tanggalin na ang listeners
-        document.removeEventListener('click', enableAudio);
-        document.removeEventListener('touchstart', enableAudio);
-        document.removeEventListener('scroll', enableAudio);
-    }).catch(error => {
-        console.log("Autoplay waiting for interaction");
-    });
-}
-
-// Subukang patugtugin agad pag-load
-window.addEventListener('load', () => {
-    music.play().catch(() => {});
+openBtn.addEventListener('click', function() {
+    music.play();
+    overlay.style.opacity = '0';
+    setTimeout(() => {
+        overlay.style.display = 'none';
+    }, 500);
+    launchConfetti();
 });
 
-// I-unmute sa unang tap, click, o kahit mag-scroll lang ang bisita sa CP
-document.addEventListener('click', enableAudio);
-document.addEventListener('touchstart', enableAudio);
-document.addEventListener('scroll', enableAudio);
+// --- 4. VIDEO POPUP CONTROLS ---
+const watchVideoBtn = document.getElementById('watchVideoBtn');
+const videoModal = document.getElementById('videoModal');
+const closeVideoBtn = document.getElementById('closeVideoBtn');
+const birthdayVideo = document.getElementById('birthdayVideo');
 
-// --- 4. GOOGLE MAPS DIRECT LINK ---
+// Buksan ang Video Modal
+watchVideoBtn.addEventListener('click', function() {
+    videoModal.style.display = 'flex';
+    music.pause(); // I-pause muna ang background music habang may video
+    birthdayVideo.play(); // I-play ang video
+});
+
+// Isara ang Video Modal
+function closeVideo() {
+    videoModal.style.display = 'none';
+    birthdayVideo.pause(); // I-pause ang video
+    birthdayVideo.currentTime = 0; // I-reset sa simula
+    music.play(); // I-play ulit ang background music
+}
+
+closeVideoBtn.addEventListener('click', closeVideo);
+
+// Isara rin kapag nag-click sa labas ng video player
+window.addEventListener('click', function(event) {
+    if (event.target === videoModal) {
+        closeVideo();
+    }
+});
+
+// --- 5. GOOGLE MAPS DIRECT LINK ---
 document.getElementById('locationBtn').addEventListener('click', function() {
     const googleMapsUrl = "https://maps.google.com/?q=Grand+Celebration+Hall+Manila";
     window.open(googleMapsUrl, '_blank');
