@@ -94,6 +94,6 @@ window.addEventListener('click', function(event) {
 
 // --- 5. GOOGLE MAPS DIRECT LINK ---
 document.getElementById('locationBtn').addEventListener('click', function() {
-    const googleMapsUrl = "3FP2+6W2, Toril, Davao City, Davao del Sur";
+    const googleMapsUrl = "https://maps.app.goo.gl/uGESxmTR8MFRmeqw9?g_st=afm";
     window.open(googleMapsUrl, '_blank');
 });
