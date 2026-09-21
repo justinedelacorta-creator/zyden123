@@ -94,6 +94,6 @@ window.addEventListener('click', function(event) {
 
 // --- 5. GOOGLE MAPS DIRECT LINK ---
 document.getElementById('locationBtn').addEventListener('click', function() {
-    const googleMapsUrl = "https://maps.google.com/?q=Grand+Celebration+Hall+Manila";
+    const googleMapsUrl = "3FP2+6W2, Toril, Davao City, Davao del Sur";
     window.open(googleMapsUrl, '_blank');
 });
